@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kategori Game - TUJUENWE</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: #000000;
+            color: #fff;
+            background-image: 
+                radial-gradient(circle at 30% 20%, rgba(153, 69, 255, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 70% 80%, rgba(20, 241, 149, 0.15) 0%, transparent 30%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header and Footer styles (sama dengan index.html) */
+        header {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #9945FF, #14F195);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(153, 69, 255, 0.1);
+            color: #14F195;
+        }
+
+        /* Kategori Game Specific Styles */
+        .category-container {
+            margin-top: 100px;
+            padding: 20px;
+            flex: 1;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .category-card {
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(153, 69, 255, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: #14F195;
+        }
+
+        .category-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                transparent 60%,
+                rgba(20, 241, 149, 0.1)
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .category-card:hover::after {
+            opacity: 1;
+        }
+
+        .category-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .category-content {
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            margin: 0;
+            background: linear-gradient(45deg, #9945FF, #14F195);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .game-list {
+            margin-top: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: rgba(153, 69, 255, 0.1);
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 1px solid rgba(153, 69, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 1.2rem;
+            color: #14F195;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 0.3rem;
+        }
+
+        /* Footer styles */
+        footer {
+            margin-top: auto;
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 3rem 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: #14F195;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: #9945FF;
+        }
+        
+        .footer-bottom {
+            margin-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">TUJUENWE</div>
+                <nav class="nav-links">
+                    <a href="index.html">Beranda</a>
+                    <a href="jual-akun.html">Jual Akun</a>
+                    <a href="beli-akun.html">Beli Akun</a>
+                    <a href="kategori-game.html">Kategori Game</a>
+                    <a href="masuk.html">Masuk</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container category-container">
+        <h2 style="background: linear-gradient(45deg, #9945FF, #14F195); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+            Kategori Game
+        </h2>
+
+        <div class="category-grid">
+            <!-- Mobile Games Category -->
+            <div class="category-card">
+                <img src="HP-ROG-Phone-5s-Series-Besutan-Asus-Resmi-Hadir-di-Indonesia.jpg" alt="Mobile Games" class="category-image">
+                <div class="category-content">
+                    <h3 class="category-title">Mobile Games</h3>
+                    <div class="game-list">
+                        Mobile Legends, PUBG Mobile, Free Fire, Genshin Impact
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">1.2K</div>
+                            <div class="stat-label">Akun</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">850</div>
+                            <div class="stat-label">Terjual</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">4.8</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PC Games Category -->
+            <div class="category-card">
+                <img src="2180439531626088159.webp" alt="PC Games" class="category-image">
+                <div class="category-content">
+                    <h3 class="category-title">PC Games</h3>
+                    <div class="game-list">
+                        Valorant, CS:GO, Dota 2, League of Legends
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">2.5K</div>
+                            <div class="stat-label">Akun</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1.2K</div>
+                            <div class="stat-label">Terjual</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">4.9</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Console Games Category -->
+            <div class="category-card">
+                <img src="xbox-playstation-group-0057-64c3e751a896f.jpg" alt="Console Games" class="category-image">
+                <div class="category-content">
+                    <h3 class="category-title">Console Games</h3>
+                    <div class="game-list">
+                        PS4, PS5, Xbox Series X/S, Nintendo Switch
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">800</div>
+                            <div class="stat-label">Akun</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">450</div>
+                            <div class="stat-label">Terjual</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">4.7</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tentang TUJUENWE</h3>
+                    <ul>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Cara Kerja</a></li>
+                        <li><a href="#">Keamanan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Bantuan</h3>
+                    <ul>
+                        <li><a href="#">Cara Beli</a></li>
+                        <li><a href="#">Cara Jual</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Hubungi Kami</h3>
+                    <ul>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">WhatsApp</a></li>
+                        <li><a href="#">Telegram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TUJUENWE - Platform Jual Beli Akun Game Terpercaya</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

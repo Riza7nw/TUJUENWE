@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beli Akun - TUJUENWE</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: #000000;
+            color: #fff;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(153, 69, 255, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(20, 241, 149, 0.15) 0%, transparent 30%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header and Footer styles (sama dengan index.html) */
+        header {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #9945FF, #14F195);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(153, 69, 255, 0.1);
+            color: #14F195;
+        }
+
+        /* Beli Akun Specific Styles */
+        .shop-container {
+            margin-top: 100px;
+            padding: 20px;
+        }
+
+        .filter-section {
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(153, 69, 255, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .filter-item {
+            position: relative;
+        }
+
+        .filter-item select, .filter-item input {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(153, 69, 255, 0.3);
+            border-radius: 8px;
+            color: #14F195;
+            transition: all 0.3s ease;
+        }
+
+        .filter-item select:focus, .filter-item input:focus {
+            border-color: #14F195;
+            outline: none;
+        }
+
+        .accounts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .account-card {
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(153, 69, 255, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .account-card:hover {
+            transform: translateY(-5px);
+            border-color: #14F195;
+        }
+
+        .account-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #9945FF, #14F195);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .account-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .account-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .account-details {
+            padding: 1.5rem;
+        }
+
+        .account-title {
+            font-size: 1.2rem;
+            margin: 0;
+            color: #14F195;
+        }
+
+        .account-stats {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .price-tag {
+            background: linear-gradient(45deg, #9945FF, #14F195);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 0.8rem;
+            margin-top: 1rem;
+            background: linear-gradient(45deg, #9945FF, #14F195);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Footer styles (sama dengan index.html) */
+        footer {
+            margin-top: auto;
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 3rem 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: #14F195;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: #9945FF;
+        }
+        
+        .footer-bottom {
+            margin-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">TUJUENWE</div>
+                <nav class="nav-links">
+                    <a href="index.html">Beranda</a>
+                    <a href="jual-akun.html">Jual Akun</a>
+                    <a href="beli-akun.html">Beli Akun</a>
+                    <a href="kategori-game.html">Kategori Game</a>
+                    <a href="masuk.html">Masuk</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container shop-container">
+        <h2 style="background: linear-gradient(45deg, #9945FF, #14F195); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+            Beli Akun Game
+        </h2>
+
+        <div class="filter-section">
+            <div class="filter-grid">
+                <div class="filter-item">
+                    <select>
+                        <option value="">Pilih Game</option>
+                        <option>Mobile Legends</option>
+                        <option>PUBG Mobile</option>
+                        <option>Genshin Impact</option>
+                        <option>Valorant</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <select>
+                        <option value="">Level Akun</option>
+                        <option>Level 1-30</option>
+                        <option>Level 31-60</option>
+                        <option>Level 61-90</option>
+                        <option>Level 91+</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <input type="number" placeholder="Harga Minimum">
+                </div>
+                <div class="filter-item">
+                    <input type="number" placeholder="Harga Maximum">
+                </div>
+            </div>
+        </div>
+
+        <div class="accounts-grid">
+            <!-- Account Card 1 -->
+            <div class="account-card">
+                <img src="3518004.jpg" alt="Mobile Legends Account" class="account-image">
+                <div class="account-details">
+                    <h3 class="account-title">Mobile Legends Premium</h3>
+                    <div class="account-stats">
+                        <span>Level 90</span>
+                        <span>•</span>
+                        <span>50 Hero</span>
+                        <span>•</span>
+                        <span>20 Skin</span>
+                    </div>
+                    <div class="price-tag">Rp 2.500.000</div>
+                    <button class="buy-btn">Beli Sekarang</button>
+                </div>
+            </div>
+
+            <!-- Account Card 2 -->
+            <div class="account-card">
+                <img src="icon_logo.jpg" alt="PUBG Account" class="account-image">
+                <div class="account-details">
+                    <h3 class="account-title">PUBG Mobile Royal</h3>
+                    <div class="account-stats">
+                        <span>Level 75</span>
+                        <span>•</span>
+                        <span>Royal Pass</span>
+                        <span>•</span>
+                        <span>Rare Items</span>
+                    </div>
+                    <div class="price-tag">Rp 1.800.000</div>
+                    <button class="buy-btn">Beli Sekarang</button>
+                </div>
+            </div>
+
+            <!-- Account Card 3 -->
+            <div class="account-card">
+                <img src="EGS_GenshinImpact_miHoYoLimited_S1_2560x1440-91c6cd7312cc2647c3ebccca10f30399.jpg" alt="Genshin Impact Account" class="account-image">
+                <div class="account-details">
+                    <h3 class="account-title">Genshin Impact Pro</h3>
+                    <div class="account-stats">
+                        <span>AR 55</span>
+                        <span>•</span>
+                        <span>15 5⭐</span>
+                        <span>•</span>
+                        <span>Rare Weapons</span>
+                    </div>
+                    <div class="price-tag">Rp 3.200.000</div>
+                    <button class="buy-btn">Beli Sekarang</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tentang TUJUENWE</h3>
+                    <ul>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Cara Kerja</a></li>
+                        <li><a href="#">Keamanan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Bantuan</h3>
+                    <ul>
+                        <li><a href="#">Cara Beli</a></li>
+                        <li><a href="#">Cara Jual</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Hubungi Kami</h3>
+                    <ul>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">WhatsApp</a></li>
+                        <li><a href="#">Telegram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TUJUENWE - Platform Jual Beli Akun Game Terpercaya</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
